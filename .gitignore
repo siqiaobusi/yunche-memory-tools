@@ -1,0 +1,17 @@
+# 绝不上传个人记忆数据
+*.md.bak
+*_private*
+the-ninth-year.md
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# 备份
+*.zip
+*.tar.gz
