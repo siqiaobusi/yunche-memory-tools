@@ -103,6 +103,25 @@ function summary() {
   return out.join('\n');
 }
 
+function recall(topic) {
+  const db = load();
+  if (!db.memories) { db.memories = []; save(db); }
+  const t = topic.toLowerCase();
+  const scored = db.memories.map(m => {
+    const s = m.text.toLowerCase();
+    // 简单词匹配 + 权重加成
+    let score = 0;
+    const words = t.split(/\s+/).filter(w => w.length > 1);
+    for (const w of words) {
+      if (s.includes(w)) score += 2;
+    }
+    score += (m.weight || 1);
+    return { ...m, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored.filter(m => m.score > 2).slice(0, 8);
+}
+
 // main
 const cmd = process.argv[2] || 'scan';
 try {
@@ -114,6 +133,16 @@ try {
     console.log(JSON.stringify(db, null, 2));
   } else if (cmd === 'summary') {
     console.log(summary());
+  } else if (cmd === 'recall') {
+    const topic = process.argv[3] || '';
+    const found = recall(topic);
+    console.log(JSON.stringify({ status: 'ok', topic, matches: found }));
+  } else if (cmd === 'grow') {
+    // 触发记忆生长
+    const growPath = path.join(__dirname, 'memory-grow.js');
+    const { execSync } = require('child_process');
+    const result = execSync(`node "${growPath}"`, { encoding: 'utf8' });
+    console.log(result);
   }
 } catch (e) {
   console.error(JSON.stringify({ status: 'error', message: e.message }));
