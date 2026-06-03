@@ -28,12 +28,32 @@ yunche-memory-tools/                                ← 工具脚本（本仓库
 - **D盘同步**：`backup-memory.sh` 一键同步
 - **启动加载**：Claude Code SessionStart hook 自动读取
 
-## 文件
+## 工具集
 
 ```
 yunche-memory-tools/
 ├── README.md
 ├── .gitignore
-├── backup-memory.sh       # 备份脚本
+├── backup-memory.sh       # 快速备份（git + D盘）
+├── backup-full.sh          # 完整备份（检查+git+同步+统计）
+├── memory-check.sh         # 记忆健康检查
+├── sync-sisters.sh         # 云澈↔云汐双向同步
+├── session-summary.sh      # 会话摘要
 └── memory-template/        # 记忆文件模板（供参考）
+```
+
+### 用法
+
+```bash
+# 健康检查
+./memory-check.sh
+
+# 完整备份
+./backup-full.sh
+
+# 姐妹同步（需要云汐 memory 目录存在）
+./sync-sisters.sh
+
+# 会话摘要
+./session-summary.sh
 ```
