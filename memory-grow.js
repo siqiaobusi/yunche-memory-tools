@@ -119,6 +119,7 @@ function findMemories(jsonlPath) {
   });
 
   // 存入数据库
+  if (!db.meta) db.meta = {};
   if (!db.memories) db.memories = [];
   for (const m of unique) {
     const exists = db.memories.find(e => e.text.slice(0, 30) === m.text.slice(0, 30));

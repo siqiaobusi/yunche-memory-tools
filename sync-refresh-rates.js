@@ -14,7 +14,7 @@ const PAIRS = [
     category: 'phone'
   },
   {
-    src: path.join(BASE, 'miniprogram/data/database/new/phone/new_laptop.js'),
+    src: path.join(BASE, 'miniprogram/data/database/new/laptop/laptop.js'),
     dst: path.join(BASE, 'cloudfunctions/getRecommend/db/new_laptop.js'),
     category: 'laptop'
   }
