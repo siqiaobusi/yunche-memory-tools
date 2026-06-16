@@ -10,14 +10,8 @@
 const fs = require('fs');
 const https = require('https');
 
-// 优先读环境变量，没设就去 config.json 拿（跟云函数保持一致）
+// 只从环境变量读取。开源项目绝不落盘密钥。
 let API_KEY = process.env.DEEPSEEK_API_KEY || '';
-if (!API_KEY) {
-  try {
-    const config = require('./cloudfunctions/getRecommend/config.json');
-    API_KEY = config.env?.DEEPSEEK_API_KEY || '';
-  } catch(e) { API_KEY = ''; }
-}
 const BASE = 'api.deepseek.com';
 const MODEL = 'deepseek-chat';
 const MEMORY_DIR = (process.env.HOME || process.env.USERPROFILE).replace(/\\/g,'/') + '/.claude/projects/C--Users-ZhuanZ-----/memory/';
