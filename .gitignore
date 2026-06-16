@@ -1,9 +1,23 @@
-# 绝不上传个人记忆数据
-*.md.bak
-*_private*
-the-ninth-year.md
+# 绝不上传个人数据/凭证
+.qr-state.json
+.inner-drive-state.json
+*.log
 
-# 系统文件
+# 内部工具（不公开）
+inner-drive*
+poke-*
+test-*
+start-inner-drive.bat
+
+# 小程序相关（不属于本项目）
+sync-all.js
+sync-refresh-rates.js
+translate-names.js
+
+# 截图
+screenshots/
+
+# 系统
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -11,6 +25,9 @@ desktop.ini
 # IDE
 .vscode/
 .idea/
+
+# 依赖
+node_modules/
 
 # 备份
 *.zip
